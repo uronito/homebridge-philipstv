@@ -2,7 +2,7 @@ var Service;
 var Characteristic;
 var request = require("request");
 var pollingtoevent = require('polling-to-event');
-
+var wol = require('wake_on_lan')
 module.exports = function(homebridge)
 {
   Service = homebridge.hap.Service;
@@ -115,6 +115,11 @@ setPowerState: function(powerOn, callback) {
     }
 
     if (powerOn) {
+    		wifi_wowl_macAddress = "xx:xx:xx:xx:xx:xx";
+    		wol.wake(wifi_wowl_macAddress,function(error){});
+    		// here a pause of 3 seconds, i dont know how to make it
+    		
+		///////////////
 		url = this.on_url;
 		body = this.on_body;
 		this.log("Setting power state to on");
